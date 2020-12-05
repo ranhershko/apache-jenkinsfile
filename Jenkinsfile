@@ -14,8 +14,8 @@ pipeline {
     stage('Test dockerimage container') {
       agent { node { label 'master' } }
       steps {
-        sh 'docker container run -p 81:80 -d "docker-apache:$BUILD_NUMBER"'
-        sh 'curl http://localhost:81'
+        sh 'docker container run -p 8"$BUILD_NUMBER":80 -d "docker-apache:$BUILD_NUMBER"'
+        sh "curl http://localhost:8$BUILD_NUMBER"
       }
     }
   }
