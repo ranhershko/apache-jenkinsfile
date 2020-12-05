@@ -16,7 +16,7 @@ pipeline {
         docker { image "docker-apache:$BUILD_NUMBER" }
       }
       steps {
-        sh 'curl http://localhost'
+        sh 'curl http://$HOSTNAME'
       }
     }
   }
