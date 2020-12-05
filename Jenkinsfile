@@ -12,9 +12,7 @@ pipeline {
       }
     }
     stage('Test dockerimage container') {
-      agent any#{
-        #docker { image "docker-apache:$BUILD_NUMBER" }
-      #}
+      agent any
       steps {
         sh 'docker container run --name docker-apache-test -d "docker-apache:$BUILD_NUMBER" 
         sh 'curl http://$HOSTNAME'
