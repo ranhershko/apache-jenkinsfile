@@ -14,8 +14,7 @@ pipeline {
     stage('Test dockerimage container') {
       agent { node { label 'master' } }
       steps {
-        sh 'docker container run -p 8"$BUILD_NUMBER":80 -d "docker-apache:$BUILD_NUMBER"'
-        sh "grep -i bluesnap /var/www/html/index.html"
+        sh 'docker container run -p 8"$BUILD_NUMBER":80 -d "docker-apache:$BUILD_NUMBER"; curl "$HOSTNAME:8$BUILD_NUMBER"'
       }
     }
   }
