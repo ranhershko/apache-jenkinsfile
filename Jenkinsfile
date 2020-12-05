@@ -14,7 +14,7 @@ pipeline {
     stage('Test dockerimage container') {
       agent { node { label 'master' } }
       steps {
-        sh 'docker container run --restart=always -p 8"$BUILD_NUMBER":80 -d "docker-apache:$BUILD_NUMBER"; curl "$HOSTNAME"'
+        sh 'docker container run --network jenkins --restart=always -d "docker-apache:$BUILD_NUMBER"; curl localhost'
       }
     }
   }
