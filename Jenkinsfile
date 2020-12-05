@@ -6,16 +6,17 @@ pipeline {
       steps {
         script {
           dir('apache') {
-            def image = docker.build("docker-apache:$BUILD_NUMBER")
+            sh 'docker build -t "docker-apache:$BUILD_NUMBER" .'
           }
         }
       }
     }
     stage('Test dockerimage container') {
-      agent {
-        docker { image "docker-apache:$BUILD_NUMBER" }
-      }
+      agent any#{
+        #docker { image "docker-apache:$BUILD_NUMBER" }
+      #}
       steps {
+        sh 'docker container run --name docker-apache-test -d "docker-apache:$BUILD_NUMBER" 
         sh 'curl http://$HOSTNAME'
       }
     }
