@@ -10,7 +10,7 @@ pipeline {
         }
       }
     }
-    stage('Test dockerimage container') {
+    stage('Test docker container') {
       steps {
         sh '''
           docker container run -d --name docker-apache-test "docker-apache:$BUILD_NUMBER"
@@ -18,7 +18,7 @@ pipeline {
         '''
       }
     }
-    stage('Deploy dockerimage container') {
+    stage('Deploy docker container') {
       agent { node { label 'master' } }
       steps {
         sh '''
