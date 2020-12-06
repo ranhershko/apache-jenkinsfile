@@ -19,7 +19,6 @@ pipeline {
       }
     }
     stage('docker container deploy') {
-      agent { node { label 'master' } }
       steps {
         sh '''
           docker tag "docker-apache:$BUILD_NUMBER" "docker-apache:latest"
