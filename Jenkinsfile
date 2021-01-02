@@ -13,7 +13,7 @@ pipeline {
     stage('docker container test') {
       steps {
         sh '''
-          docker container run -i -p 81:8080 --name docker-apache-test "docker-apache:$BUILD_NUMBER" curl localhost:81
+          docker container run -i --name docker-apache-test "docker-apache:$BUILD_NUMBER" curl localhost
         '''
       }
     }
